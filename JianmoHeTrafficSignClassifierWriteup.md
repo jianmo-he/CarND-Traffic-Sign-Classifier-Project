@@ -34,7 +34,7 @@ The goals / steps of this project are the following:
 
 #### 1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.
 
-You're reading it! and here is a link to my [project code](https://github.com/udacity/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
+You're reading it! and here is a link to my [project code](https://github.com/jianmo-he/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb)
 
 ### Data Set Summary & Exploration
 
@@ -65,7 +65,7 @@ As a first step, I normalized the images to be between -1 and 1, centered around
 
 Here is an example of a traffic sign image before and after normalization.
 
-![alt text][image4]![alt text][image5]\
+![alt text][image4]![alt text][image5]
 
 But I investigated other techniques to pre-process data:
 
@@ -143,7 +143,7 @@ If a well known architecture was chosen:
 Here are five German traffic signs that I found on the web:
 
 ![alt text][image6] ![alt text][image7] ![alt text][image8] 
-![alt text][image8] ![alt text][image10]
+![alt text][image9] ![alt text][image10]
 
 
 #### 2. Discuss the model's predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the "Stand Out Suggestions" part of the rubric).
