@@ -112,7 +112,6 @@ Also, I know that smaller batch_size is better because it's more diverse. So I p
 I started with learning_rate(0.001). And I dynamically adjusted the learning rate based on the accuracy of the previous iteration. For instance, if the previous accuracy was above 0.88, the learning rate would change to 0.0009. The larger the previous accuracy is, the smaller the learning rate is. And when I reach the goal of the accuracy, I will stop trainning and use the last(best so far) one for the final model 
 
 My final model results were:
-* training set accuracy of ?
 * validation set accuracy of 0.95 
 * test set accuracy of 0.93
 
