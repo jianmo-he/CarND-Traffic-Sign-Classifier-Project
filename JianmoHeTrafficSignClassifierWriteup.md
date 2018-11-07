@@ -103,7 +103,9 @@ My final model consisted of the following layers:
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model, I used an AdamOptimizer as the previous LeNet project does. One of the tricky part is choosing the batch size and number of epochs. I tried with different numbers. I started with batch_size(10) and epochs(128). I was able to get relatively good accuracies. But when I tried to get better result, I tried batch_size(30) and epochs(128) but it seems like the accuracy was stable after some iterations. And I also tried with batch_size(300) and epochs(32). But it seems like the it never achieved the goal so I gave up on this pair.
+To train the model, I used an AdamOptimizer as the previous LeNet project does. One of the tricky part is choosing the batch size and number of epochs. I tried with different numbers. I started with batch_size(128) and epochs(30). I was able to get relatively good accuracies (>90%) but not good enough. But when I tried to get better result, I tried batch_size(128) and epochs(30) but it seems like the accuracy was stable after some iterations. So I thinkt increasing the epochs won't really work.
+
+Also, I know that smaller batch_size is better because it's more diverse. So I picked batch_size(32) and epochs(30) and the result is very good.
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
@@ -111,8 +113,8 @@ I started with learning_rate(0.001). And I dynamically adjusted the learning rat
 
 My final model results were:
 * training set accuracy of ?
-* validation set accuracy of ? 
-* test set accuracy of ?
+* validation set accuracy of 0.95 
+* test set accuracy of 0.93
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen? 
@@ -152,66 +154,65 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Slippery Road			| Slippery Road      							|
-| Right-of-way	      		| Right-of-way					 				|
-| 30 km/h      		| 30 km/h   									| 
-| 70 km/h     			| 70 km/h 										|
-| Stop sign					| Stop sign											|
-| 30 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Right-of-way	      		| Right-of-way at the next intersection					 				|
+| Slippery Road			| Slippery road      							|
+| 30 km/h      		| Speed limit (80km/h)   									| 
+| 70 km/h     			| Speed limit (70km/h) 										|
+| Stop sign					| Stop											|
 
-The model was able to correctly guess 5 of the 5 traffic signs, which gives an accuracy of 100%. This compares favorably to the accuracy on the test set of ...
+
+The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of 0.93 :-(
 
 #### 3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the "Stand Out Suggestions" part of the rubric, visualizations can also be provided such as bar charts)
 
-The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
-
-For the first image, the model is relatively sure that this is a Slippery Road (probability of 99.95%), and the image does contain a Slippery road. The top five soft max probabilities were
+For the first image(Right-of-way.jpg), the model is relatively sure that this is a Right-of-way at the next intersection (probability of 100.00%). The top five soft max probabilities were
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .9995         			| Slippery road   									| 
-| .0005     				| Pedestrians 										|
-| .00					| Dangerous curve to the right											|
-| .00	      			|Right-of-way at the next intersection					 				|
-| .00				    | Road narrows on the right      							|
+| 1.00         			| Right-of-way at the next intersection   									| 
+| .00     				| Priority road 										|
+| .00					| Dangerous curve to the left											|
+| .00	      			|Pedestrians					 				|
+| .00				    | End of no passing      							|
 
 The other results are shown as below:
 
-64914157-german-road-sign-slippery-road.jpg:
-Slippery road: 99.95%
-Pedestrians: 0.05%
-Dangerous curve to the right: 0.00%
-Right-of-way at the next intersection: 0.00%
-Road narrows on the right: 0.00%
+Pic: Slippery_Road.jpg
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.00         			| Slippery road   									| 
+| .00     				| Pedestrians 										|
+| .00					| Road narrows on the right											|
+| .00	      			|Dangerous curve to the right					 				|
+| .00				    | Beware of ice/snow      							|
 
-Right-of-way.jpg:
-Right-of-way at the next intersection: 100.00%
-Beware of ice/snow: 0.00%
-Double curve: 0.00%
-Traffic signals: 0.00%
-General caution: 0.00%
+Pic: Speed_Limit_30.jpg
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 0.9999         			| Speed limit (80km/h)   									| 
+| .0001     				| Speed limit (30km/h) 										|
+| .00					| Pedestrians											|
+| .00	      			|Speed limit (60km/h)					 				|
+| .00				    | General caution      							|
 
-Speed_Limit_30.jpg:
-Speed limit (30km/h): 99.68%
-Speed limit (80km/h): 0.32%
-Speed limit (60km/h): 0.00%
-End of all speed and passing limits: 0.00%
-Speed limit (20km/h): 0.00%
+Pic: 
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 0.9582         			| Speed limit (70km/h)   									| 
+| .0417     				| Speed limit (50km/h) 										|
+| .0001					| Speed limit (30km/h)											|
+| .00	      			|Speed limit (60km/h)					 				|
+| .00				    | Speed limit (20km/h)      							|
 
-Speed_Limit_70.png:
-Speed limit (70km/h): 97.16%
-Speed limit (30km/h): 2.84%
-Speed limit (50km/h): 0.00%
-Speed limit (20km/h): 0.00%
-Speed limit (100km/h): 0.00%
+Pic: 
+| Probability         	|     Prediction	        					| 
+|:---------------------:|:---------------------------------------------:| 
+| 1.00         			| Stop   									| 
+| .00     				| Pedestrians 										|
+| .00					| Speed limit (80km/h)											|
+| .00	      			|No entry					 				|
+| .00				    | Speed limit (30km/h)      							|
 
-Stop_Sign.jpg:
-Stop: 98.80%
-Speed limit (30km/h): 1.20%
-No entry: 0.00%
-Speed limit (20km/h): 0.00%
-Bicycles crossing: 0.00%
 
 
 ### (Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)
