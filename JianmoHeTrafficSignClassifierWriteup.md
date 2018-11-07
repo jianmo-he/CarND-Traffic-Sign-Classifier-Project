@@ -118,24 +118,24 @@ My final model results were:
 
 If an iterative approach was chosen:
 * What was the first architecture that was tried and why was it chosen? 
- - I used LeNet architecture because I've learnt about it. And it works fine.
+  I used LeNet architecture because I've learnt about it. And it works fine.
 * What were some problems with the initial architecture?
- - Not really, but one thing I forgot is to use integer as variable to pre-process data, which caused a little bit inaccuracy.
+  Not really, but one thing I forgot is to use integer as variable to pre-process data, which caused a little bit inaccuracy.
 * How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
- - I didn't try changing the architecture becasuce what the initial one works fine.
+  I didn't try changing the architecture becasuce what the initial one works fine.
 * Which parameters were tuned? How were they adjusted and why? 
- - learning rate, batch size, and number of epochs. My reasoning is described above in #3 and #4.
+  learning rate, batch size, and number of epochs. My reasoning is described above in #3 and #4.
 * What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
- - Convolution layer is good for image recognition because all images are different. Convolution can help with that by adjusting the shape of the input to normalize the image. Dropout can improve the model because it will ensure that the model does not "memorize" the training data. It will be successful for the training data, but also generic enough to be able to work on any other future input it is given, even if it is new data.
+  Convolution layer is good for image recognition because all images are different. Convolution can help with that by adjusting the shape of the input to normalize the image. Dropout can improve the model because it will ensure that the model does not "memorize" the training data. It will be successful for the training data, but also generic enough to be able to work on any other future input it is given, even if it is new data.
  
  
 If a well known architecture was chosen:
 * What architecture was chosen?
- - LeNet architecture
+  LeNet architecture
 * Why did you believe it would be relevant to the traffic sign application?
- - LeNet works well for images recognition and classification.
+  LeNet works well for images recognition and classification.
 * How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- - If it works well both on the training set and test set. If we see the model works well for the training set but not the test set, then it means the model has "memorize" the training data. In this case, we would need to add dropout layers.
+  If it works well both on the training set and test set. If we see the model works well for the training set but not the test set, then it means the model has "memorize" the training data. In this case, we would need to add dropout layers.
  
 
 ### Test a Model on New Images
@@ -178,6 +178,7 @@ For the first image(Right-of-way.jpg), the model is relatively sure that this is
 The other results are shown as below:
 
 Pic: Slippery_Road.jpg
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 1.00         			| Slippery road   									| 
@@ -187,6 +188,7 @@ Pic: Slippery_Road.jpg
 | .00				    | Beware of ice/snow      							|
 
 Pic: Speed_Limit_30.jpg
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 0.9999         			| Speed limit (80km/h)   									| 
@@ -195,7 +197,8 @@ Pic: Speed_Limit_30.jpg
 | .00	      			|Speed limit (60km/h)					 				|
 | .00				    | General caution      							|
 
-Pic: 
+Pic: Speed_Limit_70.jpg
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 0.9582         			| Speed limit (70km/h)   									| 
@@ -204,7 +207,8 @@ Pic:
 | .00	      			|Speed limit (60km/h)					 				|
 | .00				    | Speed limit (20km/h)      							|
 
-Pic: 
+Pic: Stop_Sign.jpg
+
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
 | 1.00         			| Stop   									| 
