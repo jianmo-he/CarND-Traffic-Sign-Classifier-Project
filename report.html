@@ -1,0 +1,244 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='UTF-8'><meta name='viewport' content='width=device-width initial-scale=1'>
+<title>JianmoHeTrafficSignClassifierWriteup</title><link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,700,400&subset=latin,latin-ext' rel='stylesheet' type='text/css' /><style type='text/css'>html {overflow-x: initial !important;}:root { --bg-color:#ffffff; --text-color:#333333; --select-text-bg-color:#B5D6FC; --select-text-font-color:auto; --monospace:"Lucida Console",Consolas,"Courier",monospace; }
+html { font-size: 14px; background-color: var(--bg-color); color: var(--text-color); font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; -webkit-font-smoothing: antialiased; }
+body { margin: 0px; padding: 0px; height: auto; bottom: 0px; top: 0px; left: 0px; right: 0px; font-size: 1rem; line-height: 1.42857; overflow-x: hidden; background: inherit; }
+iframe { margin: auto; }
+a.url { word-break: break-all; }
+a:active, a:hover { outline: 0px; }
+.in-text-selection, ::selection { text-shadow: none; background: var(--select-text-bg-color); color: var(--select-text-font-color); }
+#write { margin: 0px auto; height: auto; width: inherit; word-break: normal; word-wrap: break-word; position: relative; white-space: normal; padding-bottom: 70px; overflow-x: visible; }
+.first-line-indent #write div, .first-line-indent #write li, .first-line-indent #write p { text-indent: 2em; }
+.first-line-indent #write div :not(p):not(div), .first-line-indent #write div.md-htmlblock-container, .first-line-indent #write p *, .first-line-indent pre { text-indent: 0px; }
+.for-image #write { padding-left: 8px; padding-right: 8px; }
+body.typora-export { padding-left: 30px; padding-right: 30px; }
+@media screen and (max-width: 500px) {
+  body.typora-export { padding-left: 0px; padding-right: 0px; }
+  .CodeMirror-sizer { margin-left: 0px !important; }
+  .CodeMirror-gutters { display: none !important; }
+}
+#write > blockquote:first-child, #write > div:first-child, #write > figure:first-child, #write > ol:first-child, #write > p:first-child, #write > pre:first-child, #write > ul:first-child { margin-top: 30px; }
+#write li > figure:first-child { margin-top: -20px; }
+#write ol, #write ul { position: relative; }
+img { max-width: 100%; vertical-align: middle; }
+button, input, select, textarea { color: inherit; font-style: inherit; font-variant: inherit; font-weight: inherit; font-stretch: inherit; font-size: inherit; line-height: inherit; font-family: inherit; }
+input[type="checkbox"], input[type="radio"] { line-height: normal; padding: 0px; }
+*, ::after, ::before { box-sizing: border-box; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p, #write pre { width: inherit; }
+#write h1, #write h2, #write h3, #write h4, #write h5, #write h6, #write p { position: relative; }
+h1, h2, h3, h4, h5, h6 { break-after: avoid-page; break-inside: avoid; orphans: 2; }
+p { orphans: 4; }
+h1 { font-size: 2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.6rem; }
+h4 { font-size: 1.4rem; }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1rem; }
+.md-math-block, .md-rawblock, h1, h2, h3, h4, h5, h6, p { margin-top: 1rem; margin-bottom: 1rem; }
+.hidden { display: none; }
+.md-blockmeta { color: rgb(204, 204, 204); font-weight: 700; font-style: italic; }
+a { cursor: pointer; }
+sup.md-footnote { padding: 2px 4px; background-color: rgba(238, 238, 238, 0.7); color: rgb(85, 85, 85); border-radius: 4px; cursor: pointer; }
+sup.md-footnote a, sup.md-footnote a:hover { color: inherit; text-transform: inherit; text-decoration: inherit; }
+#write input[type="checkbox"] { cursor: pointer; width: inherit; height: inherit; }
+figure { overflow-x: auto; margin: 1.2em 0px; max-width: calc(100% + 16px); padding: 0px; }
+figure > table { margin: 0px !important; }
+tr { break-inside: avoid; break-after: auto; }
+thead { display: table-header-group; }
+table { border-collapse: collapse; border-spacing: 0px; width: 100%; overflow: auto; break-inside: auto; text-align: left; }
+table.md-table td { min-width: 80px; }
+.CodeMirror-gutters { border-right: 0px; background-color: inherit; }
+.CodeMirror { text-align: left; }
+.CodeMirror-placeholder { opacity: 0.3; }
+.CodeMirror pre { padding: 0px 4px; }
+.CodeMirror-lines { padding: 0px; }
+div.hr:focus { cursor: none; }
+#write pre { white-space: pre-wrap; }
+#write.fences-no-line-wrapping pre { white-space: pre; }
+#write pre.ty-contain-cm { white-space: normal; }
+.CodeMirror-gutters { margin-right: 4px; }
+.md-fences { font-size: 0.9rem; display: block; break-inside: avoid; text-align: left; overflow: visible; white-space: pre; background: inherit; position: relative !important; }
+.md-diagram-panel { width: 100%; margin-top: 10px; text-align: center; padding-top: 0px; padding-bottom: 8px; overflow-x: auto; }
+#write .md-fences.mock-cm { white-space: pre-wrap; }
+.md-fences.md-fences-with-lineno { padding-left: 0px; }
+#write.fences-no-line-wrapping .md-fences.mock-cm { white-space: pre; overflow-x: auto; }
+.md-fences.mock-cm.md-fences-with-lineno { padding-left: 8px; }
+.CodeMirror-line, twitterwidget { break-inside: avoid; }
+.footnotes { opacity: 0.8; font-size: 0.9rem; margin-top: 1em; margin-bottom: 1em; }
+.footnotes + .footnotes { margin-top: 0px; }
+.md-reset { margin: 0px; padding: 0px; border: 0px; outline: 0px; vertical-align: top; background: 0px 0px; text-decoration: none; text-shadow: none; float: none; position: static; width: auto; height: auto; white-space: nowrap; cursor: inherit; -webkit-tap-highlight-color: transparent; line-height: normal; font-weight: 400; text-align: left; box-sizing: content-box; direction: ltr; }
+li div { padding-top: 0px; }
+blockquote { margin: 1rem 0px; }
+li .mathjax-block, li p { margin: 0.5rem 0px; }
+li { margin: 0px; position: relative; }
+blockquote > :last-child { margin-bottom: 0px; }
+blockquote > :first-child, li > :first-child { margin-top: 0px; }
+.footnotes-area { color: rgb(136, 136, 136); margin-top: 0.714rem; padding-bottom: 0.143rem; white-space: normal; }
+#write .footnote-line { white-space: pre-wrap; }
+@media print {
+  body, html { border: 1px solid transparent; height: 99%; break-after: avoid; break-before: avoid; }
+  #write { margin-top: 0px; border-color: transparent !important; }
+  .typora-export * { -webkit-print-color-adjust: exact; }
+  html.blink-to-pdf { font-size: 13px; }
+  .typora-export #write { padding-left: 1cm; padding-right: 1cm; padding-bottom: 0px; break-after: avoid; }
+  .typora-export #write::after { height: 0px; }
+  @page { margin: 20mm 0px; }
+}
+.footnote-line { margin-top: 0.714em; font-size: 0.7em; }
+a img, img a { cursor: pointer; }
+pre.md-meta-block { font-size: 0.8rem; min-height: 0.8rem; white-space: pre-wrap; background: rgb(204, 204, 204); display: block; overflow-x: hidden; }
+p > img:only-child { display: block; margin: auto; }
+p > .md-image:only-child { display: inline-block; width: 100%; text-align: center; }
+#write .MathJax_Display { margin: 0.8em 0px 0px; }
+.md-math-block { width: 100%; }
+.md-math-block:not(:empty)::after { display: none; }
+[contenteditable="true"]:active, [contenteditable="true"]:focus { outline: 0px; box-shadow: none; }
+.md-task-list-item { position: relative; list-style-type: none; }
+.task-list-item.md-task-list-item { padding-left: 0px; }
+.md-task-list-item > input { position: absolute; top: 0px; left: 0px; margin-left: -1.2em; margin-top: calc(1em - 10px); }
+.math { font-size: 1rem; }
+.md-toc { min-height: 3.58rem; position: relative; font-size: 0.9rem; border-radius: 10px; }
+.md-toc-content { position: relative; margin-left: 0px; }
+.md-toc-content::after, .md-toc::after { display: none; }
+.md-toc-item { display: block; color: rgb(65, 131, 196); }
+.md-toc-item a { text-decoration: none; }
+.md-toc-inner:hover { }
+.md-toc-inner { display: inline-block; cursor: pointer; }
+.md-toc-h1 .md-toc-inner { margin-left: 0px; font-weight: 700; }
+.md-toc-h2 .md-toc-inner { margin-left: 2em; }
+.md-toc-h3 .md-toc-inner { margin-left: 4em; }
+.md-toc-h4 .md-toc-inner { margin-left: 6em; }
+.md-toc-h5 .md-toc-inner { margin-left: 8em; }
+.md-toc-h6 .md-toc-inner { margin-left: 10em; }
+@media screen and (max-width: 48em) {
+  .md-toc-h3 .md-toc-inner { margin-left: 3.5em; }
+  .md-toc-h4 .md-toc-inner { margin-left: 5em; }
+  .md-toc-h5 .md-toc-inner { margin-left: 6.5em; }
+  .md-toc-h6 .md-toc-inner { margin-left: 8em; }
+}
+a.md-toc-inner { font-size: inherit; font-style: inherit; font-weight: inherit; line-height: inherit; }
+.footnote-line a:not(.reversefootnote) { color: inherit; }
+.md-attr { display: none; }
+.md-fn-count::after { content: "."; }
+code, pre, samp, tt { font-family: var(--monospace); }
+kbd { margin: 0px 0.1em; padding: 0.1em 0.6em; font-size: 0.8em; color: rgb(36, 39, 41); background: rgb(255, 255, 255); border: 1px solid rgb(173, 179, 185); border-radius: 3px; box-shadow: rgba(12, 13, 14, 0.2) 0px 1px 0px, rgb(255, 255, 255) 0px 0px 0px 2px inset; white-space: nowrap; vertical-align: middle; }
+.md-comment { color: rgb(162, 127, 3); opacity: 0.8; font-family: var(--monospace); }
+code { text-align: left; vertical-align: initial; }
+a.md-print-anchor { white-space: pre !important; border-width: initial !important; border-style: none !important; border-color: initial !important; display: inline-block !important; position: absolute !important; width: 1px !important; right: 0px !important; outline: 0px !important; background: 0px 0px !important; text-decoration: initial !important; text-shadow: initial !important; }
+.md-inline-math .MathJax_SVG .noError { display: none !important; }
+.md-math-block .MathJax_SVG_Display { text-align: center; margin: 0px; position: relative; text-indent: 0px; max-width: none; max-height: none; min-height: 0px; min-width: 100%; width: auto; overflow-y: hidden; display: block !important; }
+.MathJax_SVG_Display, .md-inline-math .MathJax_SVG_Display { width: auto; margin: inherit; display: inline-block !important; }
+.MathJax_SVG .MJX-monospace { font-family: var(--monospace); }
+.MathJax_SVG .MJX-sans-serif { font-family: sans-serif; }
+.MathJax_SVG { display: inline; font-style: normal; font-weight: 400; line-height: normal; zoom: 90%; text-indent: 0px; text-align: left; text-transform: none; letter-spacing: normal; word-spacing: normal; word-wrap: normal; white-space: nowrap; float: none; direction: ltr; max-width: none; max-height: none; min-width: 0px; min-height: 0px; border: 0px; padding: 0px; margin: 0px; }
+.MathJax_SVG * { transition: none; }
+.MathJax_SVG_Display svg { vertical-align: middle !important; margin-bottom: 0px !important; }
+.os-windows.monocolor-emoji .md-emoji { font-family: "Segoe UI Symbol", sans-serif; }
+.md-diagram-panel > svg { max-width: 100%; }
+[lang="mermaid"] svg, [lang="flow"] svg { max-width: 100%; }
+[lang="mermaid"] .node text { font-size: 1rem; }
+table tr th { border-bottom: 0px; }
+video { max-width: 100%; display: block; margin: 0px auto; }
+iframe { max-width: 100%; width: 100%; border: none; }
+.highlight td, .highlight tr { border: 0px; }
+
+
+:root { --side-bar-bg-color: #fafafa; --control-text-color: #777; }
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: normal; src: local("Open Sans Regular"), url("./github/400.woff") format("woff"); }
+@font-face { font-family: "Open Sans"; font-style: italic; font-weight: normal; src: local("Open Sans Italic"), url("./github/400i.woff") format("woff"); }
+@font-face { font-family: "Open Sans"; font-style: normal; font-weight: bold; src: local("Open Sans Bold"), url("./github/700.woff") format("woff"); }
+@font-face { font-family: "Open Sans"; font-style: italic; font-weight: bold; src: local("Open Sans Bold Italic"), url("./github/700i.woff") format("woff"); }
+html { font-size: 16px; }
+body { font-family: "Open Sans", "Clear Sans", "Helvetica Neue", Helvetica, Arial, sans-serif; color: rgb(51, 51, 51); line-height: 1.6; }
+#write { max-width: 860px; margin: 0px auto; padding: 20px 30px 100px; }
+#write > ul:first-child, #write > ol:first-child { margin-top: 30px; }
+body > :first-child { margin-top: 0px !important; }
+body > :last-child { margin-bottom: 0px !important; }
+a { color: rgb(65, 131, 196); }
+h1, h2, h3, h4, h5, h6 { position: relative; margin-top: 1rem; margin-bottom: 1rem; font-weight: bold; line-height: 1.4; cursor: text; }
+h1:hover a.anchor, h2:hover a.anchor, h3:hover a.anchor, h4:hover a.anchor, h5:hover a.anchor, h6:hover a.anchor { text-decoration: none; }
+h1 tt, h1 code { font-size: inherit; }
+h2 tt, h2 code { font-size: inherit; }
+h3 tt, h3 code { font-size: inherit; }
+h4 tt, h4 code { font-size: inherit; }
+h5 tt, h5 code { font-size: inherit; }
+h6 tt, h6 code { font-size: inherit; }
+h1 { padding-bottom: 0.3em; font-size: 2.25em; line-height: 1.2; border-bottom: 1px solid rgb(238, 238, 238); }
+h2 { padding-bottom: 0.3em; font-size: 1.75em; line-height: 1.225; border-bottom: 1px solid rgb(238, 238, 238); }
+h3 { font-size: 1.5em; line-height: 1.43; }
+h4 { font-size: 1.25em; }
+h5 { font-size: 1em; }
+h6 { font-size: 1em; color: rgb(119, 119, 119); }
+p, blockquote, ul, ol, dl, table { margin: 0.8em 0px; }
+li > ol, li > ul { margin: 0px; }
+hr { height: 2px; padding: 0px; margin: 16px 0px; background-color: rgb(231, 231, 231); border: 0px none; overflow: hidden; box-sizing: content-box; }
+body > h2:first-child { margin-top: 0px; padding-top: 0px; }
+body > h1:first-child { margin-top: 0px; padding-top: 0px; }
+body > h1:first-child + h2 { margin-top: 0px; padding-top: 0px; }
+body > h3:first-child, body > h4:first-child, body > h5:first-child, body > h6:first-child { margin-top: 0px; padding-top: 0px; }
+a:first-child h1, a:first-child h2, a:first-child h3, a:first-child h4, a:first-child h5, a:first-child h6 { margin-top: 0px; padding-top: 0px; }
+h1 p, h2 p, h3 p, h4 p, h5 p, h6 p { margin-top: 0px; }
+li p.first { display: inline-block; }
+ul, ol { padding-left: 30px; }
+ul:first-child, ol:first-child { margin-top: 0px; }
+ul:last-child, ol:last-child { margin-bottom: 0px; }
+blockquote { border-left: 4px solid rgb(223, 226, 229); padding: 0px 15px; color: rgb(119, 119, 119); }
+blockquote blockquote { padding-right: 0px; }
+table { padding: 0px; word-break: initial; }
+table tr { border-top: 1px solid rgb(223, 226, 229); margin: 0px; padding: 0px; }
+table tr:nth-child(2n), thead { background-color: rgb(248, 248, 248); }
+table tr th { font-weight: bold; border-width: 1px 1px 0px; border-top-style: solid; border-right-style: solid; border-left-style: solid; border-top-color: rgb(223, 226, 229); border-right-color: rgb(223, 226, 229); border-left-color: rgb(223, 226, 229); border-image: initial; border-bottom-style: initial; border-bottom-color: initial; text-align: left; margin: 0px; padding: 6px 13px; }
+table tr td { border: 1px solid rgb(223, 226, 229); text-align: left; margin: 0px; padding: 6px 13px; }
+table tr th:first-child, table tr td:first-child { margin-top: 0px; }
+table tr th:last-child, table tr td:last-child { margin-bottom: 0px; }
+.CodeMirror-lines { padding-left: 4px; }
+.code-tooltip { box-shadow: rgba(0, 28, 36, 0.3) 0px 1px 1px 0px; border-top: 1px solid rgb(238, 242, 242); }
+.md-fences, code, tt { border: 1px solid rgb(231, 234, 237); background-color: rgb(248, 248, 248); border-radius: 3px; padding: 2px 4px 0px; font-size: 0.9em; }
+code { background-color: rgb(243, 244, 244); padding: 0px 4px 2px; }
+.md-fences { margin-bottom: 15px; margin-top: 15px; padding: 8px 1em 6px; }
+.md-task-list-item > input { margin-left: -1.3em; }
+@media screen and (min-width: 914px) {
+}
+@media print {
+  html { font-size: 13px; }
+  table, pre { break-inside: avoid; }
+  pre { word-wrap: break-word; }
+}
+.md-fences { background-color: rgb(248, 248, 248); }
+#write pre.md-meta-block { padding: 1rem; font-size: 85%; line-height: 1.45; background-color: rgb(247, 247, 247); border: 0px; border-radius: 3px; color: rgb(119, 119, 119); margin-top: 0px !important; }
+.mathjax-block > .code-tooltip { bottom: 0.375rem; }
+.md-mathjax-midline { background: rgb(250, 250, 250); }
+#write > h3.md-focus::before { left: -1.5625rem; top: 0.375rem; }
+#write > h4.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+#write > h5.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+#write > h6.md-focus::before { left: -1.5625rem; top: 0.285714rem; }
+.md-image > .md-meta { border-radius: 3px; padding: 2px 0px 0px 4px; font-size: 0.9em; color: inherit; }
+.md-tag { color: rgb(167, 167, 167); opacity: 1; }
+.md-toc { margin-top: 20px; padding-bottom: 20px; }
+.sidebar-tabs { border-bottom: none; }
+#typora-quick-open { border: 1px solid rgb(221, 221, 221); background-color: rgb(248, 248, 248); }
+#typora-quick-open-item { background-color: rgb(250, 250, 250); border-color: rgb(254, 254, 254) rgb(229, 229, 229) rgb(229, 229, 229) rgb(238, 238, 238); border-style: solid; border-width: 1px; }
+.on-focus-mode blockquote { border-left-color: rgba(85, 85, 85, 0.12); }
+header, .context-menu, .megamenu-content, footer { font-family: "Segoe UI", Arial, sans-serif; }
+.file-node-content:hover .file-node-icon, .file-node-content:hover .file-node-open-state { visibility: visible; }
+.mac-seamless-mode #typora-sidebar { background-color: var(--side-bar-bg-color); }
+.md-lang { color: rgb(180, 101, 77); }
+.html-for-mac .context-menu { --item-hover-bg-color: #E6F0FE; }
+
+
+
+
+
+ .typora-export p, .typora-export .footnote-line {white-space: normal;} 
+</style>
+</head>
+<body class='typora-export os-windows' >
+<div  id='write'  class = 'is-node'><h1><a name='header-n2' class='md-header-anchor '></a><strong>Traffic Sign Recognition</strong> </h1><hr /><p><strong>Build a Traffic Sign Recognition Project</strong></p><p>The goals / steps of this project are the following:</p><ul><li>Load the data set (see below for links to the project data set)</li><li>Explore, summarize and visualize the data set</li><li>Design, train and test a model architecture</li><li>Use the model to make predictions on new images</li><li>Analyze the softmax probabilities of the new images</li><li>Summarize the results with a written report</li></ul><h2><a name='header-n32' class='md-header-anchor '></a>Rubric Points</h2><h3><a name='header-n33' class='md-header-anchor '></a>Here I will consider the <a href='https://review.udacity.com/#!/rubrics/481/view'>rubric points</a> individually and describe how I addressed each point in my implementation.  </h3><hr /><h3><a name='header-n35' class='md-header-anchor '></a>Writeup / README</h3><h4><a name='header-n36' class='md-header-anchor '></a>1. Provide a Writeup / README that includes all the rubric points and how you addressed each one. You can submit your writeup as markdown or pdf. You can use this template as a guide for writing the report. The submission includes the project code.</h4><p>You&#39;re reading it! and here is a link to my <a href='https://github.com/jianmo-he/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb'>project code</a></p><h3><a name='header-n38' class='md-header-anchor '></a>Data Set Summary &amp; Exploration</h3><h4><a name='header-n39' class='md-header-anchor '></a>1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.</h4><p>I used the pandas library to calculate summary statistics of the traffic
+signs data set:</p><ul><li>The size of training set is 34799</li><li>The size of the validation set is 4410</li><li>The size of test set is 12630</li><li>The shape of a traffic sign image is (32, 32, 3)</li><li>The number of unique classes/labels in the data set is 43</li></ul><h4><a name='header-n52' class='md-header-anchor '></a>2. Include an exploratory visualization of the dataset.</h4><p>Here is an exploratory visualization of the data set.</p><p><span class='md-image'><img alt='alt text' src='./writeup_images/TrainDataSignCounts.png' title='Visualization' referrerPolicy='no-referrer'></img></span>
+<span class='md-image'><img alt='alt text' src='./writeup_images/TestDataSignCounts.png' title='Visualization' referrerPolicy='no-referrer'></img></span>
+<span class='md-image'><img alt='alt text' src='./writeup_images/ValidDataSignCounts.png' title='Visualization' referrerPolicy='no-referrer'></img></span></p><h3><a name='header-n55' class='md-header-anchor '></a>Design and Test a Model Architecture</h3><h4><a name='header-n56' class='md-header-anchor '></a>1. Describe how you preprocessed the image data. What techniques were chosen and why did you choose these techniques? Consider including images showing the output of each preprocessing technique. Pre-processing refers to techniques such as converting to grayscale, normalization, etc. (OPTIONAL: As described in the &quot;Stand Out Suggestions&quot; part of the rubric, if you generated additional data for training, describe why you decided to generate additional data, how you generated the data, and provide example images of the additional data. Then describe the characteristics of the augmented training set like number of images in the set, number of images for each class, etc.)</h4><p>As a first step, I normalized the images to be between -1 and 1, centered around 0. This makes data has mean zero and equal variance. I didn&#39;t convert the data to grayscale because I think converting to grayscale will loose information of data, such as the color of stop sign.</p><p>Here is an example of a traffic sign image before and after normalization.</p><p><span class='md-image'><img alt='alt text' src='./writeup_images/sign_before_normal.png' title='Before Normalization' referrerPolicy='no-referrer'></img></span><span class='md-image'><img alt='alt text' src='./writeup_images/sign_after_normal.png' title='After Normalization' referrerPolicy='no-referrer'></img></span></p><p>But I investigated other techniques to pre-process data:</p><ol start='' ><li>RGB to YUV: from Pierre Sermanet&#39;s paper, I will convert pics from RGB to YUV and choose only the Y channel. The Y channel is then preprocessed with global and local contrast normalization while U and V channels are left unchanged.</li><li>Moving sign to different location of the whole picture: this method can eliminate the effect of the different location of traffic sign in the picture.</li><li>Rotation: duplicating, rotating n degrees, and then appending an image (for every image and many different n degrees per image) can significantly grow the training database. Without having to collect more images, this adds data that relates to real life scenarios, as signs, for example, can be rotated at any angle. This will allow the model to recognize new images even if they are rotated.</li></ol><h4><a name='header-n69' class='md-header-anchor '></a>2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.</h4><p>My final model consisted of the following layers:</p><figure><table><thead><tr><th style='text-align:center;' >Layer</th><th style='text-align:center;' >Description</th></tr></thead><tbody><tr><td style='text-align:center;' >Input</td><td style='text-align:center;' >32x32x3 RGB image</td></tr><tr><td style='text-align:center;' >Convolution 5x5</td><td style='text-align:center;' >1x1 stride, same padding, outputs 28x28x6</td></tr><tr><td style='text-align:center;' >RELU</td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' >Max pooling</td><td style='text-align:center;' >2x2 stride,  outputs 14x14x6</td></tr><tr><td style='text-align:center;' >Convolution 5x5</td><td style='text-align:center;' >1x1 stride, same padding, outputs 10x10x16</td></tr><tr><td style='text-align:center;' >RELU</td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' >Max pooling</td><td style='text-align:center;' >2x2 stride, outputs 5x5x16</td></tr><tr><td style='text-align:center;' >Flatten</td><td style='text-align:center;' >outputs 400</td></tr><tr><td style='text-align:center;' >Fully connected</td><td style='text-align:center;' >outputs 120</td></tr><tr><td style='text-align:center;' >RELU</td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' >Fully connected</td><td style='text-align:center;' >outputs 84</td></tr><tr><td style='text-align:center;' >RELU</td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' >Fully connected</td><td style='text-align:center;' >outputs 43</td></tr><tr><td style='text-align:center;' >Softmax</td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' >Loss</td><td style='text-align:center;' >&nbsp;</td></tr><tr><td style='text-align:center;' >Adam Optimizer</td><td style='text-align:center;' >&nbsp;</td></tr></tbody></table></figure><p>&nbsp;</p><h4><a name='header-n124' class='md-header-anchor '></a>3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.</h4><p>To train the model, I used an AdamOptimizer as the previous LeNet project does. One of the tricky part is choosing the batch size and number of epochs. I tried with different numbers. I started with batch_size(128) and epochs(30). I was able to get relatively good accuracies (&gt;90%) but not good enough. But when I tried to get better result, I tried batch_size(128) and epochs(30) but it seems like the accuracy was stable after some iterations. So I thinkt increasing the epochs won&#39;t really work.</p><p>Also, I know that smaller batch_size is better because it&#39;s more diverse. So I picked batch_size(32) and epochs(30) and the result is very good.</p><h4><a name='header-n127' class='md-header-anchor '></a>4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.</h4><p>I started with learning_rate(0.001). And I dynamically adjusted the learning rate based on the accuracy of the previous iteration. For instance, if the previous accuracy was above 0.88, the learning rate would change to 0.0009. The larger the previous accuracy is, the smaller the learning rate is. And when I reach the goal of the accuracy, I will stop trainning and use the last(best so far) one for the final model </p><p>My final model results were:</p><ul><li>validation set accuracy of 0.95 </li><li>test set accuracy of 0.93</li></ul><p>If an iterative approach was chosen:</p><ul><li><p>What was the first architecture that was tried and why was it chosen? </p><p>I used LeNet architecture because I&#39;ve learnt about it. And it works fine.</p></li><li><p>What were some problems with the initial architecture?</p><p>Not really, but one thing I forgot is to use integer as variable to pre-process data, which caused a little bit inaccuracy.</p></li><li><p>How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.</p><p>I didn&#39;t try changing the architecture becasuce what the initial one works fine.</p></li><li><p>Which parameters were tuned? How were they adjusted and why? </p><p>learning rate, batch size, and number of epochs. My reasoning is described above in #3 and #4.</p></li><li><p>What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?</p><p>Convolution layer is good for image recognition because all images are different. Convolution can help with that by adjusting the shape of the input to normalize the image. Dropout can improve the model because it will ensure that the model does not &quot;memorize&quot; the training data. It will be successful for the training data, but also generic enough to be able to work on any other future input it is given, even if it is new data.</p></li></ul><p>If a well known architecture was chosen:</p><ul><li><p>What architecture was chosen?</p><p>LeNet architecture</p></li><li><p>Why did you believe it would be relevant to the traffic sign application?</p><p>LeNet works well for images recognition and classification.</p></li><li><p>How does the final model&#39;s accuracy on the training, validation and test set provide evidence that the model is working well?</p><p>If it works well both on the training set and test set. If we see the model works well for the training set but not the test set, then it means the model has &quot;memorize&quot; the training data. In this case, we would need to add dropout layers.</p></li></ul><h3><a name='header-n164' class='md-header-anchor '></a>Test a Model on New Images</h3><h4><a name='header-n165' class='md-header-anchor '></a>1. Choose five German traffic signs found on the web and provide them in the report. For each image, discuss what quality or qualities might be difficult to classify.</h4><p>Here are five German traffic signs that I found on the web:</p><p><span class='md-image'><img alt='alt text' src='./test_images/Slippery_Road.jpg' title='Slippery_Road' referrerPolicy='no-referrer'></img></span> <span class='md-image'><img alt='alt text' src='./test_images/Right-of-way.jpg' title='Right-of-way' referrerPolicy='no-referrer'></img></span> <span class='md-image'><img alt='alt text' src='./test_images/Speed_Limit_30.jpg' title='Speed_Limit_30' referrerPolicy='no-referrer'></img></span> 
+<span class='md-image'><img alt='alt text' src='./test_images/Speed_Limit_70.png' title='Speed_Limit_70' referrerPolicy='no-referrer'></img></span> <span class='md-image'><img alt='alt text' src='./test_images/Stop_Sign.jpg' title='Stop_Sign' referrerPolicy='no-referrer'></img></span></p><h4><a name='header-n169' class='md-header-anchor '></a>2. Discuss the model&#39;s predictions on these new traffic signs and compare the results to predicting on the test set. At a minimum, discuss what the predictions were, the accuracy on these new predictions, and compare the accuracy to the accuracy on the test set (OPTIONAL: Discuss the results in more detail as described in the &quot;Stand Out Suggestions&quot; part of the rubric).</h4><p>Here are the results of the prediction:</p><figure><table><thead><tr><th style='text-align:center;' >Image</th><th style='text-align:center;' >Prediction</th></tr></thead><tbody><tr><td style='text-align:center;' >Right-of-way</td><td style='text-align:center;' >Right-of-way at the next intersection</td></tr><tr><td style='text-align:center;' >Slippery Road</td><td style='text-align:center;' >Slippery road</td></tr><tr><td style='text-align:center;' >30 km/h</td><td style='text-align:center;' >Speed limit (80km/h)</td></tr><tr><td style='text-align:center;' >70 km/h</td><td style='text-align:center;' >Speed limit (70km/h)</td></tr><tr><td style='text-align:center;' >Stop sign</td><td style='text-align:center;' >Stop</td></tr></tbody></table></figure><p>The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of 0.93 :-(</p><h4><a name='header-n191' class='md-header-anchor '></a>3. Describe how certain the model is when predicting on each of the five new images by looking at the softmax probabilities for each prediction. Provide the top 5 softmax probabilities for each image along with the sign type of each probability. (OPTIONAL: as described in the &quot;Stand Out Suggestions&quot; part of the rubric, visualizations can also be provided such as bar charts)</h4><p>For the first image(Right-of-way.jpg), the model is relatively sure that this is a Right-of-way at the next intersection (probability of 100.00%). The top five soft max probabilities were</p><figure><table><thead><tr><th style='text-align:center;' >Probability</th><th style='text-align:center;' >Prediction</th></tr></thead><tbody><tr><td style='text-align:center;' >1.00</td><td style='text-align:center;' >Right-of-way at the next intersection</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >Priority road</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >Dangerous curve to the left</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >Pedestrians</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >End of no passing</td></tr></tbody></table></figure><p>The other results are shown as below:</p><p>Pic: Slippery_Road.jpg</p><figure><table><thead><tr><th style='text-align:center;' >Probability</th><th style='text-align:center;' >Prediction</th></tr></thead><tbody><tr><td style='text-align:center;' >1.00</td><td style='text-align:center;' >Slippery road</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >Pedestrians</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >Road narrows on the right</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >Dangerous curve to the right</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >Beware of ice/snow</td></tr></tbody></table></figure><p>Pic: Speed_Limit_30.jpg</p><figure><table><thead><tr><th style='text-align:center;' >Probability</th><th style='text-align:center;' >Prediction</th></tr></thead><tbody><tr><td style='text-align:center;' >0.9999</td><td style='text-align:center;' >Speed limit (80km/h)</td></tr><tr><td style='text-align:center;' >.0001</td><td style='text-align:center;' >Speed limit (30km/h)</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >Pedestrians</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >Speed limit (60km/h)</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >General caution</td></tr></tbody></table></figure><p>Pic: Speed_Limit_70.jpg</p><figure><table><thead><tr><th style='text-align:center;' >Probability</th><th style='text-align:center;' >Prediction</th></tr></thead><tbody><tr><td style='text-align:center;' >0.9582</td><td style='text-align:center;' >Speed limit (70km/h)</td></tr><tr><td style='text-align:center;' >.0417</td><td style='text-align:center;' >Speed limit (50km/h)</td></tr><tr><td style='text-align:center;' >.0001</td><td style='text-align:center;' >Speed limit (30km/h)</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >Speed limit (60km/h)</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >Speed limit (20km/h)</td></tr></tbody></table></figure><p>Pic: Stop_Sign.jpg</p><figure><table><thead><tr><th style='text-align:center;' >Probability</th><th style='text-align:center;' >Prediction</th></tr></thead><tbody><tr><td style='text-align:center;' >1.00</td><td style='text-align:center;' >Stop</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >Pedestrians</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >Speed limit (80km/h)</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >No entry</td></tr><tr><td style='text-align:center;' >.00</td><td style='text-align:center;' >Speed limit (30km/h)</td></tr></tbody></table></figure><p>&nbsp;</p><h3><a name='header-n294' class='md-header-anchor '></a>(Optional) Visualizing the Neural Network (See Step 4 of the Ipython notebook for more details)</h3><h4><a name='header-n295' class='md-header-anchor '></a>1. Discuss the visual output of your trained network&#39;s feature maps. What characteristics did the neural network use to make classifications?</h4><p>&nbsp;</p></div>
+</body>
+</html>
